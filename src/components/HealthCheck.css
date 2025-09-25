@@ -1,0 +1,342 @@
+/* Health Check Component Styles */
+.health-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Health Status Banner */
+.health-banner {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: var(--shadow-glass);
+  transition: all var(--duration-medium) var(--easing);
+  position: relative;
+  overflow: hidden;
+}
+
+.health-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  transition: all var(--duration-medium) var(--easing);
+}
+
+.health-banner.healthy {
+  border-color: rgba(16, 185, 129, 0.3);
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.health-banner.healthy::before {
+  background: linear-gradient(90deg, var(--neon-success), var(--neon-primary));
+}
+
+.health-banner.error {
+  border-color: rgba(239, 68, 68, 0.3);
+  animation: shake 0.5s ease-in-out;
+}
+
+.health-banner.error::before {
+  background: linear-gradient(90deg, var(--neon-error), #ff6b6b);
+}
+
+.health-banner.loading {
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.health-banner.loading::before {
+  background: linear-gradient(90deg, var(--neon-accent), var(--neon-primary));
+  animation: loading-bar 2s ease-in-out infinite;
+}
+
+/* Status Icons */
+.status-icon {
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--bg-glass);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.healthy-icon {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(0, 217, 255, 0.2));
+  border-color: rgba(16, 185, 129, 0.3);
+  animation: float 2s ease-in-out infinite;
+}
+
+.error-icon {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(255, 107, 107, 0.2));
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.loading-icon {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(0, 217, 255, 0.2));
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top: 3px solid var(--neon-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Status Content */
+.status-content {
+  flex: 1;
+  text-align: left;
+}
+
+.status-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.status-message {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Status Actions */
+.status-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Status Badge */
+.status-badge {
+  display: flex;
+  align-items: center;
+}
+
+.uptime-badge {
+  background: linear-gradient(135deg, var(--neon-success), var(--neon-primary));
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);
+}
+
+/* Health Metrics Grid */
+.health-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.metric-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-glass);
+  transition: all var(--duration-medium) var(--easing);
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-card:hover {
+  background: var(--bg-glass-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(0, 217, 255, 0.3);
+}
+
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transition: transform var(--duration-medium) var(--easing);
+}
+
+.metric-card:hover::before {
+  transform: scaleX(1);
+}
+
+.metric-icon {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.metric-content {
+  margin-bottom: 1rem;
+}
+
+.metric-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.metric-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.metric-trend {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.metric-trend.positive {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--neon-success);
+}
+
+.metric-trend.stable {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--neon-accent);
+}
+
+/* Sparkline Charts */
+.metric-sparkline {
+  display: flex;
+  align-items: end;
+  gap: 2px;
+  height: 40px;
+  margin-top: 1rem;
+}
+
+.sparkline-bar {
+  flex: 1;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+  min-height: 8px;
+  transition: all var(--duration-medium) var(--easing);
+  opacity: 0.7;
+}
+
+.sparkline-bar:hover {
+  opacity: 1;
+  transform: scaleY(1.1);
+}
+
+/* Loading States */
+.loading-skeleton .metric-card {
+  pointer-events: none;
+}
+
+.skeleton-bar {
+  height: 40px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.05) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.skeleton-text {
+  height: 20px;
+  width: 60%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.05) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  border-radius: 4px;
+}
+
+.error-state .metric-card {
+  opacity: 0.5;
+  filter: grayscale(1);
+}
+
+/* Animations */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes loading-bar {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .health-banner {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .status-content {
+    text-align: center;
+  }
+  
+  .health-metrics {
+    grid-template-columns: 1fr;
+  }
+  
+  .metric-value {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .health-container {
+    gap: 1.5rem;
+  }
+  
+  .health-banner {
+    padding: 1.5rem;
+  }
+  
+  .status-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
+  
+  .status-title {
+    font-size: 1.25rem;
+  }
+}
